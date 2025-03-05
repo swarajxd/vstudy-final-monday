@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vStudy - Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div class="overlay"></div>
+            <div class="content">
+                <a href="/" class="logo">
+                    <img src="./logo-removebg-preview.png" alt="vStudy Logo" class="logo-image" />
+                  </a>
+                  <a href="../index.html" class="back-link">
+                    Back to website
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+                  
+                <div class="hero-text">
+                    <h2>Empowering Students, Enriching Education</h2>
+                    <p>Join our community of learners and unlock your academic potential</p>
+                </div>
+                
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1>Create an account</h1>
+                    
+                </div>
+                <p class="login-link">
+                    Already have an account? <a href="./login.html">Log in</a>
+                </p>
+
+                <form id="signup-form">
+                    <div class="name-fields">
+                        <input type="text" name="first_name" placeholder="First name" required>
+                        <input type="text" name="last_name" placeholder="Last name" required>
+                    </div>
+                    <input type="email" name="email" placeholder="Email" required>
+                
+                    <div class="password-field">
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <button type="button" id="toggle-password" aria-label="Toggle password visibility">
+                            👁️
+                        </button>
+                    </div>
+                
+                    <div class="terms">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">
+                            I agree to the <a href="/terms">Terms & Conditions</a>
+                        </label>
+                    </div>
+                
+                    <button type="submit" class="submit-btn">Create account</button>
+                </form>
+                
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const form = document.getElementById("signup-form");
+                        const passwordInput = document.getElementById("password");
+                        const togglePassword = document.getElementById("toggle-password");
+                
+                        // Toggle Password Visibility
+                        togglePassword.addEventListener("click", function () {
+                            passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+                        });
+                
+                        form.addEventListener("submit", async function (event) {
+                            event.preventDefault(); // Prevent default form submission
+                
+                            const formData = {
+                                first_name: form.querySelector('input[name="first_name"]').value.trim(),
+                                last_name: form.querySelector('input[name="last_name"]').value.trim(),
+                                email: form.querySelector('input[name="email"]').value.trim(),
+                                password: passwordInput.value.trim()
+                            };
+                
+                            try {
+                                const response = await fetch("http://localhost:5000/signup", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify(formData)
+                                });
+                
+                                const data = await response.json();
+                                if (response.ok) {
+                                    alert("✅ Signup successful!");
+                                    window.location.href = "/login.html"; // Redirect to login page
+                                } else {
+                                    alert(`❌ Error: ${data.error}`);
+                                }
+                            } catch (error) {
+                                console.error("Error:", error);
+                                alert("❌ Signup failed. Try again later.");
+                            }
+                        });
+                    });
+                </script>
+                
+
+
+
+
+
+
+
+
+
+
+
+
+               <!-- <form id="signup-form">
+                    <div class="name-fields">
+                        <input type="text" placeholder="First name" required>
+                        <input type="text" placeholder="Last name" required>
+                    </div>
+                    <input type="email" placeholder="Email" required>
+                    <div class="password-field">
+                        <input type="password" id="password" placeholder="Password" required>
+                        <button type="button" id="toggle-password" aria-label="Toggle password visibility">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                        </button>
+                    </div>
+                    <div class="terms">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">
+                            I agree to the <a href="/terms">Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Create account</button>
+                </form>
+                <div class="divider">
+                    <span>Or register with</span>
+                </div>
+                <div class="social-buttons">
+                    <button class="social-btn google">
+                        <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                        Google
+                    </button>
+                    <button class="social-btn apple">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.878 16.293c-.658 0-1.307-.24-1.818-.675-.332-.281-.657-.601-.962-.966-.667-.725-1.074-1.564-1.074-2.458 0-.68.134-1.334.402-1.936.267-.602.653-1.124 1.16-1.566.506-.442 1.1-.737 1.756-.876.365-.056.707-.123 1.046-.187.267-.033.507-.131.709-.285.224-.163.357-.383.39-.632.031-.226-.038-.456-.182-.643-.149-.187-.374-.295-.624-.324-.307-.035-.61.01-.891.138-.293.125-.542.305-.737.538-.353-.273-.767-.485-1.2-.628-.622-.218-1.271-.326-1.916-.326-.464 0-.925.041-1.378.122-.85.151-1.614.415-2.276.776-.662.36-1.212.796-1.659 1.281-.462.516-.832 1.097-1.066 1.744-.138.42-.242.86-.312 1.308-.064.401-.101.809-.11 1.221-.01.32.047.646.145.954.097.308.232.597.41.857.363.612.876 1.106 1.477 1.449.6.343 1.299.52 1.986.52.522 0 1.039-.075 1.552-.22.849-.214 1.62-.562 2.301-1.021.619-.489 1.099-1.097 1.417-1.784-.071-.019-.143-.041-.215-.06.252-.402.377-.887.377-1.413-.001-.679-.314-1.32-.845-1.76-.506-.421-1.139-.646-1.801-.646zM12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+                        </svg>
+                        Apple
+                    </button>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const formData = new FormData(event.target);
+          const data = Object.fromEntries(formData);
+        
+          const response = await fetch("http://localhost:5000/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+        
+          const result = await response.json();
+          alert(result.message || result.error);
+        });
+        </script>
+
+    <script src="script.js"></script> - -->
+</body>
+</html>

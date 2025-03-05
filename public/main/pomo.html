@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Dashboard - Udemy Style</title>
+    <link rel="stylesheet" href="pomo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Facundo:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,600;1,600&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="back-row-toggle splat-toggle">
+    <div class="rain front-row"></div>
+    <div class="rain back-row"></div>
+  
+    <div class="toggles">
+      <div class="splat-toggle toggle active"></div>
+      <div class="back-row-toggle toggle active"></div>
+      <div class="single-toggle toggle"></div>
+    </div>
+  </div>
+   
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <i class='bx bxl-react logo' ></i>
+                </span>
+                <div class="text header-text">
+                    <span class="name">vstudy</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle1'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="./Main.html">
+                            <i class='bx bxs-dashboard icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="./mathsmain.html">
+                            <i class='bx bxs-book-open icon'></i>
+                            <span class="text nav-text">Courses</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bxs-time-five icon' ></i>
+                            <span class="text nav-text">Pomodaro</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-notepad icon'></i>
+                            <span class="text nav-text">ToDoList</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-bar-chart-square icon'></i>
+                            <span class="text nav-text">Analytics</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+                <li class="mode">
+                    <div class="moon-sun">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark Mode</span>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                <li class="profile">
+                    <a>
+                        <div class="circle-profile">
+                        <img src="./profilepic.jpeg">
+                        </div>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
+    <main>
+     
+      <div class="container">
+      
+      <div class="top-options">
+          <button class="sound-btn" data-sound="Forest">Forest</button>
+          <button class="sound-btn" data-sound="Rainy">Rainy</button>
+          <button class="sound-btn" data-sound="Peace">House</button>
+          <button class="sound-btn" data-sound="Café">Café</button>
+      </div>
+
+      <div class="timer-circle">
+          <div class="timer-background"></div>
+          <div class="timer-content">
+              <div id="timer-status"></div>
+              <div id="time-display">30:00</div>
+              <div class="timer-controls">
+                  <button id="start-pause-btn">▶ START</button>
+                  <button id="reset-btn" style="display: none;">↺ RESET</button>
+              </div>
+          </div>
+      </div>
+      
+
+      <div class="time-settings">
+          <div class="setting">
+              <span>SESSION</span>
+              <div class="time-input">
+                  <button class="arrow-btn" id="session-up">▲</button>
+                  <input type="number" id="session-input" value="30" min="1" max="60">
+                  <button class="arrow-btn" id="session-down">▼</button>
+              </div>
+          </div>
+          <div class="setting">
+              <span>BREAK</span>
+              <div class="time-input">
+                  <button class="arrow-btn" id="break-up">▲</button>
+                  <input type="number" id="break-input" value="5" min="1" max="60">
+                  <button class="arrow-btn" id="break-down">▼</button>
+              </div>
+          </div>
+      </div>
+  </div>
+        
+          
+          
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <script src="pomo.js"></script>
+    
+    
+</body>
+</html>

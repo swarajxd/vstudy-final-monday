@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Dashboard - Udemy Style</title>
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Facundo:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <i class='bx bxl-react logo' ></i>
+                </span>
+                <div class="text header-text">
+                    <span class="name">vstudy</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bxs-dashboard icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="./course.html">
+                            <i class='bx bxs-book-open icon'></i>
+                            <span class="text nav-text">Courses</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="./pomo.html">
+                            <i class='bx bxs-time-five icon' ></i>
+                            <span class="text nav-text">Pomodaro</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="./task.html">
+                            <i class='bx bx-notepad icon'></i>
+                            <span class="text nav-text">ToDoList</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-bar-chart-square icon'></i>
+                            <span class="text nav-text">Analytics</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+                <li class="mode">
+                    <div class="moon-sun">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark Mode</span>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                <li class="profile">
+                    <a>
+                        <div class="circle-profile">
+                        <img src="./profilepic.jpeg">
+                        </div>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
+    <div class="profilebackground">
+        <div class="outerbox">
+            <img class="profilepic" src="./profilepic.jpeg">
+        </div>
+    </div>
+    <div class="personalinfo">
+        <div class="name">
+            <h1>Bhavith Shetty</h1>
+        </div>
+        <div class="aboutyour">
+            <p>Studying in 11th standard</p> 
+        </div>
+        <button class="button2" id="editProfileBtn">Edit profile</button>
+    </div>
+    <div id="editProfileForm" class="edit-profile hidden">
+        <h2>EDIT PROFILE</h2>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text">
+            <label>Name</label>
+            <input type="text">
+        </div>
+        <div class="form-group">
+            <label>About</label>
+            <input type="text">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email">
+        </div>
+        <div class="form-group">
+            <label>Phone No.</label>
+            <input type="tel">
+        </div>
+        <button id="closeProfileBtn">Close</button>
+    </div>
+
+    <!-- Background Overlay -->
+    <div id="overlay" class="hidden"></div>
+
+    
+    <div class="information">
+        <div class="infoblock">
+            <h1>Friends</h1>
+            <p>12</p>
+        </div>
+        <div class="infoblock">
+            <h1>Requests</h1>
+            <p>4</p>
+        </div>
+        <div class="infoblock">
+            <h1>Study Hours</h1>
+            <p>8160</p>
+        </div>
+    </div>
+    
+    <div class="friendlist">
+        <h3>All friends</h3>
+            <ul id="friends-list">
+                <li class="friend">
+                    <div class="avatar"><img src="./profilepic.jpeg" alt="Avatar"></div>
+                    <div>
+                        <div class="usernamebox">
+                        <p class="username">Bhavith_22</p>
+                        <p class="hashtag">#BS03</p>
+                    </div>
+                        <p class="fullname">bhavith shetty</p>
+                    </div>
+                </li>
+                <li class="friend">
+                    <div class="avatar"><img src="./swaraj.jfif" alt="Avatar"></div>
+                    <div>
+                        <div class="usernamebox">
+                        <p class="username">Swaraj_s</p>
+                        <p class="hashtag">#4A6D</p>
+                        </div>
+                        <p class="fullname">swaraj shinde</p>
+                    </div>
+                </li>
+                <li class="friend">
+                    <div class="avatar"><img src="./prakyat.jfif" alt="Avatar"></div>
+                    <div>
+                        <div class="usernamebox">
+                        <p class="username">Prak_yat</p>
+                        <p class="hashtag">#P03S</p>
+                        </div>
+                        <p class="fullname">prakyat shetty</p>
+                    </div>
+                </li>
+                <li class="friend">
+                    <div class="avatar"><img src="./taha.jfif" alt="Avatar"></div>
+                    <div>
+                        <div class="usernamebox">
+                        <p class="username">TahaSayed</p>
+                        <p class="hashtag">#GF6F</p>
+                        </div>
+                        <p class="fullname">taha sayed</p>
+                    </div>
+                </li>
+                <li class="friend">
+                    <div class="avatar"><img src="avatar.png" alt="Avatar"></div>
+                    <div>
+                        <div class="usernamebox">
+                        <p class="username">Rujuta_g</p>
+                        <p class="hashtag">#908J</p>
+                        </div>
+                        <p class="fullname">rujuta gujar</p>
+                    </div>
+                </li>
+                <li class="friend">
+                    <div class="avatar"><img src="avatar.png" alt="Avatar"></div>
+                    <div>
+                        <div class="usernamebox">
+                        <p class="username">UrviChaoji</p>
+                        <p class="hashtag">#UBJ8</p>
+                        </div>
+                        <p class="fullname">urvi</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="input-container">
+                <input type="text" id="friend-name" placeholder="Add a friend">
+                <button onclick="sendRequest()">Send Request</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup" class="popup">✅ Request Sent</div>
+    </div>
+     <div class="leaderboard-box">
+            <div class="leaderboard">
+              <h1 class="title">Study Leaderboard</h1>
+              <div class="subtitle">Top performers this week</div>
+              <ul class="student-list" id="studentList">
+                <!-- Student items will be dynamically added here -->
+              </ul>
+            </div>
+            <div class="modal-overlay" id="modalOverlay">
+              <div class="modal">
+                <button class="close-button" id="closeModal">&times;</button>
+                <div id="modalContent"></div>
+              </div>
+            </div>
+          </div>
+    
+    
+    
+    
+    <script src="profile.js"></script>
+    
+    
+</body>
+</html>

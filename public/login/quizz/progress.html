@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: rgb(226, 186, 137);
+    
+            background: radial-gradient(circle, rgba(226, 186, 137, 1) 0%, rgba(252, 243, 229, 1) 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        :root {
+    --color-background: #F9FAFB;
+    --color-white: #FFFFFF;
+    --color-text-primary: #1A1A1A;
+    --color-text-secondary: #4B5563;
+    --color-text-tertiary: #6B7280;
+    --color-correct: #86B18B;
+    --color-incorrect: #F87171;
+    --color-skipped: #E5E7EB;
+}
+
+        .content a img {
+        height: 150px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 10px;
+        margin-left: 10px;  
+        }
+        .back-link {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        background-color: rgba(138, 115, 85, 0.3);
+        color: var(--secondary-color);
+        text-decoration: none;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        transition: background-color 0.3s ease;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 1rem;
+        }
+
+        .back-link:hover {
+        background-color: rgba(139, 115, 85, 0.2);
+        }
+
+    .back-link svg {
+    margin-left: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .title {
+            
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            margin-top:80px;
+        }
+        .scorebox{
+            display: flex;
+            gap: 20px;
+        }
+        .score-card1{
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            width: 350px;
+            height:350px ;
+        }
+        .score-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            height:350px ;
+        }
+
+        .score-section {
+            text-align: center;
+            margin-bottom:75px;
+        }
+
+        .score-label {
+            color: #666;
+            font-size: 20px;
+            margin-bottom:40px;
+        }
+
+       .score-value h2{
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 8px;
+       }
+        .score-total {
+            color: #666;
+            font-size: 18px;
+            
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap:80px;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-circle {
+            width: 164px;
+            height: 164px;
+            border-radius: 50%;
+            border: 4px solid;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+        }
+
+        .stat-correct { border-color: #10B981; }
+        .stat-incorrect { border-color: #EF4444; }
+        .stat-negative { border-color: #8B5CF6; }
+        .stat-skipped { border-color: #6B7280; }
+
+        .stat-label {
+            color: #666;
+            font-size:18px;
+            margin-bottom: 20px;
+        }
+
+        .metrics {
+            margin: 0 auto 2rem;
+            gap: 1rem;
+        }
+
+        .metric-item {
+            text-align: center;
+            display: flex;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .metric-value {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: #333;
+            position: absolute;
+            right: 0;
+
+        }
+
+        .score-message {
+            margin-top: -10px;
+            color: #666;
+            font-size: 17px;
+        }
+
+        .view-solution {
+            display: block;
+            width: 300px;
+            margin: 0 auto;
+            padding: 0.75rem;
+            background: #F43F5E;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .view-solution:hover {
+            background: #E11D48;
+        }
+
+        .report-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height:60px;
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            margin-top: 20px;
+        }
+
+        .report-title {
+            font-size:22px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .view-report {
+            color: #666;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+            text-align: center;
+            place-items:center;
+        }
+
+        .report-item-value {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .report-item-label {
+            color: #666;
+            font-size:16px;
+        }
+
+        .score-card h4{
+            margin-top: 10px;
+            font-family: "Work Sans", sans-serif;
+            font-weight: 500;
+        }
+        .correct-text { color: #10B981; }
+        .incorrect-text { color: #EF4444; }
+        
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --color-background: #F9FAFB;
+    --color-white: #FFFFFF;
+    --color-text-primary: #1A1A1A;
+    --color-text-secondary: #4B5563;
+    --color-text-tertiary: #6B7280;
+    --color-correct: #10B981;
+    --color-incorrect: #F87171;
+    --color-skipped: #E5E7EB;
+}
+.view-report {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.arrow {
+    margin-left: 0.5rem;
+}
+
+main {
+   display: flex;
+   gap: 20px;
+}
+
+section {
+    background-color: var(--color-white);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.circle-chart {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--color-correct);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:50px;
+}
+
+.circle-content {
+    text-align: center;
+}
+.time-analysis{
+   text-align: center;
+   width: 380px;
+   height:540px;
+}
+.time {
+    font-size: 23px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 10px ;
+}
+
+.label {
+    font-size:19px;
+    color: var(--color-text-tertiary);
+}
+
+.time-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-text-secondary);
+}
+
+.percentage {
+    font-weight: 500;
+}
+
+.percentage.correct {
+    color: var(--color-correct);
+}
+
+.percentage.incorrect {
+    color: var(--color-incorrect);
+}
+
+.score-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.total-questions {
+    text-align: right;
+    display:flex;
+    gap: 10px;
+}
+
+.question-count {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: block;
+}
+
+h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    margin-top:-40px;
+}
+
+.attempts-legend {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+.side{
+    display: flex;
+    gap: 1.5rem;
+    justify-content: end;
+    align-items: end;
+    position:absolute;
+    right: 0;
+    margin-top: -37px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius:3px;
+}
+
+.legend-color.correct {
+    background-color: var(--color-correct);
+}
+
+.legend-color.incorrect {
+    background-color: var(--color-incorrect);
+}
+
+.legend-color.skipped {
+    background-color: var(--color-skipped);
+}
+.score-analysis{
+    height: 540px;
+
+}
+.score-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.chart-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.chart-label {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-text-secondary);
+}
+
+.chart-bar {
+    height: 40px;
+    border-radius: 6px;
+}
+
+.chart-bar.correct {
+    background-color: var(--color-correct);
+}
+
+.chart-bar.incorrect,
+.chart-bar.skipped {
+    border: 2px dashed var(--color-skipped);
+}
+
+.question-scale {
+    margin-top: 2rem;
+}
+
+.scale-numbers {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-text-tertiary);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.scale-label {
+    text-align: center;
+    color: var(--color-text-secondary);
+}
+
+.score-summary {
+    margin-top: 2rem;
+    color: var(--color-text-secondary);
+}
+
+.score-summary strong {
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+.explore{
+    display: flex;
+}
+.button1 {
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #FDF8F1;
+  color: #333;
+  border-radius: 10rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s;
+ position: absolute;
+ right: 0;
+ margin-top:70px;
+}
+
+.button1__icon-wrapper {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  color: #FDF8F1;
+  background-color: #333;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.button1:hover {
+  background-color: #000;
+  color: #FDF8F1;
+}
+
+.button1:hover .button1__icon-wrapper {
+  color: #333;
+  background-color: #FDF8F1;
+}
+
+.button1__icon-svg--copy {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+
+.button1:hover .button1__icon-svg:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+.button1:hover .button1__icon-svg--copy {
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(0);
+}
+
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
+
+    </style>
+</head>
+<body>
+   <div class="content">
+    <a href="/" class="logo">
+      <img src="../logo-removebg-preview.png" alt="vStudy Logo" class="logo-image" />
+    </a>
+    
+  </div>
+    <div class="container">
+        <div class="explore">
+        <h1 class="title">Quiz On Basic Science and Mathematics</h1>
+        <a href="../../main/Main.html" class="button1" style="--clr: #7808d0">
+            <span class="button1__icon-wrapper">
+              <svg
+                viewBox="0 0 14 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="button1__icon-svg"
+                width="10"
+              >
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+          
+              <svg
+                viewBox="0 0 14 15"
+                fill="none"
+                width="10"
+                xmlns="http://www.w3.org/2000/svg"
+                class="button1_icon-svg button1_icon-svg--copy"
+              >
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </span>
+            Dashboard
+          </a>
+          </div>
+          
+        <div class="scorebox">
+        <div class="score-card1">
+            <div class="score-section">
+                <div class="score-label">Your Score</div>
+                <div class="score-value">
+                    <h2>15</h2>
+                    <span class="score-total">out of 15</span>
+                </div>
+            </div>
+
+            
+
+            <div class="metrics">
+                <div class="metric-item">
+                    <div class="metric-label">Percentile</div>
+                    <div class="metric-value">100%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Accuracy</div>
+                    <div class="metric-value">100%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Percentage</div>
+                    <div class="metric-value">100%</div>
+                </div>
+            </div>
+
+            <button class="view-solution">VIEW SOLUTION</button>
+        </div>
+        <div class="score-card">
+            <h4>Time Allocated <strong>6 Hours</strong></h4>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-circle stat-correct">2</div>
+                    <div class="stat-label">Physics</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle stat-incorrect">2</div>
+                    <div class="stat-label">Chemistry</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle stat-negative">2</div>
+                    <div class="stat-label">Mathematics</div>
+                </div>
+                
+            </div>
+
+            
+
+            <div class="score-message">
+                You have allocated <strong>6 hours</strong> of study each day, with <strong>2 hours</strong> dedicated to Physics, <strong>2
+                hours </strong>to Chemistry, and <strong> 2 hours</strong> to Mathematics.
+            </div>
+
+            
+        </div>
+        </div>
+        <div class="report-header">
+            <div class="report-title">Question Report</div>
+            <a href="#" class="view-report">
+                View Report
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="report-card">
+            <div class="report-grid">
+                <div class="report-item">
+                    <div class="report-item-value">15</div>
+                    <div class="report-item-label">Questions</div>
+                </div>
+                <div class="report-item">
+                    <div class="report-item-value correct-text">15</div>
+                    <div class="report-item-label">Correct</div>
+                </div>
+                <div class="report-item">
+                    <div class="report-item-value incorrect-text">0</div>
+                    <div class="report-item-label">Incorrect</div>
+                </div>
+                <div class="report-item">
+                    <div class="report-item-value">0</div>
+                    <div class="report-item-label">Skipped</div>
+                </div>
+                <div class="report-item">
+                    <div class="report-item-value">15</div>
+                    <div class="report-item-label">Score</div>
+                </div>
+                <div class="report-item">
+                    <div class="report-item-value">51s</div>
+                    <div class="report-item-label">Time Taken</div>
+                </div>
+            </div>
+        </div>
+        <div class="report-header">
+            <div class="report-title">How did you perform</div>
+        <a href="#" class="view-report">
+            View Report
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+        </div>
+        </header>
+        
+        <main>
+            <section class="time-analysis">
+                <h2>Time Analysis</h2>
+                <div class="circle-chart">
+                    <div class="circle">
+                        <div class="circle-content">
+                        </div>
+                    </div>
+                    <span class="time">51s</span>
+                    <span class="label">Total Time Spent</span>
+                </div>
+                <div class="time-breakdown">
+                    <div class="breakdown-item">
+                        <span>On Correct Answers</span>
+                        <span class="percentage correct">100%</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>On Incorrect Answers</span>
+                        <span class="percentage incorrect">0%</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>On Skipped</span>
+                        <span class="percentage">0%</span>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="score-analysis">
+                <div class="score-header">
+                    <h2>Score Analysis</h2>
+                    <div class="total-questions">
+                        <span>Total Questions</span>
+                        <span class="question-count">15</span>
+                    </div>
+                </div>
+                
+                <div class="attempts-legend">
+                    <div class="side1"><h3>Attempts</h3></div>
+                    
+                    <div class="side">
+                    <div class="legend-item">
+                        <span class="legend-color correct"></span>
+                        <span>Physics 5</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color incorrect"></span>
+                        <span>Chemistry 0</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color skipped"></span>
+                        <span>Mathematics 0</span>
+                    </div>
+                    </div>
+                </div>
+                <div class="score-chart">
+                    <div class="chart-item">
+                        <div class="chart-label">
+                            <span>Physics</span>
+                            <span>5</span>
+                        </div>
+                        <div class="chart-bar correct"></div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="chart-label">
+                            <span>Chemistry</span>
+                            <span>0</span>
+                        </div>
+                        <div class="chart-bar incorrect"></div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="chart-label">
+                            <span>Mathematics</span>
+                            <span>0</span>
+                        </div>
+                        <div class="chart-bar skipped"></div>
+                    </div>
+                </div>
+                <div class="question-scale">
+                    <div class="scale-numbers">
+                        <span>0</span>
+                        <span>1</span>
+                        <span>2</span>
+                        <span>3</span>
+                        <span>4</span>
+                        <span>5</span>
+                    </div>
+                    <div class="scale-label">Questions</div>
+                </div>
+                <p class="score-summary">
+                    You have scored <strong>5 marks</strong> for correct answers, missed <strong>0 marks</strong> on incorrect answers, lost <strong>0 marks</strong> due to negative marking and <strong>0 marks</strong> by skipping questions.
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // View Solution button click handler
+            const viewSolutionBtn = document.querySelector('.view-solution');
+            viewSolutionBtn.addEventListener('click', function() {
+                alert('Viewing solution...');
+                // Add your solution viewing logic here
+            });
+
+            // View Report link click handler
+            const viewReportLink = document.querySelector('.view-report');
+            viewReportLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Viewing detailed report...');
+                // Add your report viewing logic here
+            });
+
+            // Initialize any data or state if needed
+            const quizData = {
+                totalQuestions: 5,
+                correct: 5,
+                incorrect: 0,
+                skipped: 0,
+                negativeMarking: 0,
+                timeTaken: '51s',
+                percentile: '100%',
+                accuracy: '100%'
+            };
+
+            // You can add more interactive features here
+            // For example, updating stats dynamically or adding animations
+        });
+    </script>
+</body>
+</html>

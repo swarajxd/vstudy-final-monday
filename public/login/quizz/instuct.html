@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Test Instructions</title>
+    <link rel="stylesheet" href="instruct.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MCQ Test Instructions</h1>
+            <h2>Prepare, Perform, Progress</h2>
+        </header>
+
+        <main>
+            <section>
+                <h3>General Guidelines</h3>
+                <ul>
+                    <li>The test consists of 15 questions divided equally among three subjects: Math, Physics, and Chemistry (5 questions each).</li>
+                    <li>The test duration is 15 minutes.</li>
+                    <li>Time recommendations:
+                        <ul>
+                            <li>Math: 5 minutes</li>
+                            <li>Physics: 5 minutes</li>
+                            <li>Chemistry: 5 minutes</li>
+                        </ul>
+                    </li>
+                    <li>The test will automatically close when the timer ends.</li>
+                    <li class="important">Manage your time wisely to complete all questions!</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>How to Attempt</h3>
+                <ol>
+                    <li>Read the question carefully.</li>
+                    <li>Select one of the four options provided for each question.</li>
+                    <li>Click "Next" to move to the next question.</li>
+                    <li>You can navigate back to previous questions if needed.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h3>Progress Feedback</h3>
+                <p>After completing the test, you will receive:</p>
+                <ul>
+                    <li>Your total score</li>
+                    <li>Subject-wise performance analysis</li>
+                    <li>Suggestions for improvement</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <button id="start-test" onclick="goToQuiz()">Start Test</button>
+            
+        </footer>
+    </div>
+
+    <script>
+        function goToQuiz() {
+            window.location.href = 'quiz.html'; // Redirects to the quiz page
+        }
+    </script>
+</body>
+</html>
+

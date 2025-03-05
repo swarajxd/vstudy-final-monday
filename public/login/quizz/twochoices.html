@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Standard</title>
+    <link rel="stylesheet" href="twochoices.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Choose Your Standard</h1>
+            <h2>Embark on your personalized study journey</h2>
+        </header>
+        <main>
+            <a href="11th-standard.html" class="button">11th Standard</a>
+            <a href="12th-standard.html" class="button">12th Standard</a>
+        </main>
+        <footer>
+            <p>Your future starts here!</p>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.button');
+    
+    buttons.forEach((button, index) => {
+        setTimeout(() => {
+            button.classList.add('fade-in');
+        }, 300 * (index + 1));
+    });
+});
+    </script>
+</body>
+</html>
+

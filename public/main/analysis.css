@@ -1,0 +1,704 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+:root{
+    --body-color:#e9e7e7;
+    --sidebar-color:#a58865;
+    --primary-color:#74614f;
+    --primary-color-light:#f6f5ff;
+    --toggle-color:#ddd;
+    --text-color:#131313;
+    --widget-color:#FFFBF5;
+    --widget-text:#74614f;
+    --lead-background: #FFF5EA;
+    --lead-primary: #FF9F7E; 
+    --lead-primary2: #D9785F;
+    --lead-secondary: #FFD68A;
+    --lead-text: #333333;
+    --lead-text-light: #666666;
+    --takequiz:#fff7e8;
+
+
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
+
+body {
+    height: 100vh;
+    background: var(--body-color);
+    transition: var(--tran-05);
+    position: relative;
+  }
+body.dark{
+    --takequiz:#3a3b3c;
+    --body-color:#18191a;
+    --sidebar-color:#242526;
+    --primary-color:#3a3b3c;
+    --primary-color-light:#3a3b3c;
+    --toggle-color:#ddd;
+    --text-color:#ccc;
+    --widget-color:#3a3b3c;
+    --widget-text:#ccc;
+    --lead-background: #18191a;
+}
+.sidebar .text{
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.sidebar .image{
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+}
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background: var(--sidebar-color);
+    transition: var(--tran-05);
+    z-index: 100;
+}
+.sidebar header .image-text{
+    display: flex;
+    align-items: center;
+}
+header .image-text .header-text{
+    display: flex;
+    flex-direction: column;
+}
+.header-text .name{
+    font-weight: 900; 
+    font-size: 35px;
+    margin-left: 10px;
+    font-family: 'Facundo', sans-serif;
+    margin-top:-10px;
+    color: var(--text-color);
+    transition: var(--tran-02);
+}
+
+.mobile-menu {
+    display: none;
+    position: relative;
+}
+
+#menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 40px;
+    width: 100%;
+    background: #2c3e50;
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dropdown-menu ul li {
+    padding: 10px;
+}
+
+.dropdown-menu ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu ul li:hover {
+    background: #34495e;
+    border-radius: 5px;
+}
+
+.sidebar .text{
+    transition: var(--tran-03);
+    white-space: nowrap;
+    opacity: 1;
+}
+.sidebar.close{
+    width: 88px;
+}
+.sidebar.close .text{
+    opacity: 0;
+}
+.sidebar li{
+    height: 60px;
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+.sidebar li .icon{
+    font-size: 25px;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar li .icon,.sidebar li .text{
+    color: var(--text-color);
+    transition: var(--tran-02);
+}
+.sidebar header{
+    position: relative;
+}
+
+.sidebar .image-text .image .bx.bxl-react {
+    font-size: 60px;
+    color: var(--text-color);
+}
+body.darkmode .sidebar .image-text .image .bx.bxl-react {
+    color: var(--widget-color);
+}
+
+.sidebar header .toggle{
+    position: absolute;
+    top:50%;
+    right: -25px;
+    transform: translateY(-50%) rotate(180deg);
+    
+    height: 25px;
+    width: 25px;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--sidebar-color);
+    font-size: 22px;
+    transition:  var(--tran-03);
+}
+
+.sidebar.close header .toggle{
+    transform: translateY(-50%);
+}
+body.dark .sidebar header .toggle{
+    color: var(--text-color);
+}
+
+.sidebar li a{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: var(--tran-04);
+
+}
+
+.sidebar li a:hover{
+    background: var(--primary-color);
+}
+
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: var(--text-color);
+}
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text{
+    color: var(--text-color);
+}
+
+.sidebar .menu-bar{
+    
+    height: calc(100% - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-bar .mode{
+    position: relative;
+    background: var(--);
+}
+
+.menu-bar .mode .moon-sun{
+    height: 50px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+}
+.menu-bar .mode i{
+    position: absolute;
+    transition: var(--tran-03);
+}
+
+.menu-bar .mode i.sun{
+    opacity: 0;
+}
+body.dark .menu-bar .mode i.sun{
+    opacity: 1;
+}
+body.dark .menu-bar .mode i.moon{
+    opacity: 0;
+}
+.menu-bar .mode .toggle-switch{
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: 60px;
+    cursor: pointer;
+    border-radius: 6px;
+    
+    transition: var(--tran-05);
+}
+
+.toggle-switch .switch {
+    position: relative;
+    height: 22px;
+    width: 44px;
+    border-radius: 25px;
+    background: var(--toggle-color);
+    
+}
+
+
+.switch::before{
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    background: var(--sidebar-color);
+    transition: var(--tran-03);
+}
+
+body.dark .switch::before{
+    left: 20px;
+}
+.profile .circle-profile {
+    background: var(--body-color);
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    overflow: hidden; /* Ensures the image doesn't overflow the circle */
+    display: flex; /* Aligns child elements (like the image) properly */
+    justify-content: center; /* Centers the image horizontally */
+    align-items: center; /* Centers the image vertically */
+}
+
+.profile .circle-profile img {
+    height: 100%; /* Ensures the image height fills the circle */
+    width: 100%; /* Ensures the image width fills the circle */
+    object-fit: cover; /* Ensures the image maintains its aspect ratio while covering the area */
+}
+
+.main .welcome{
+    margin-left:150px;
+    margin-top: 20px;
+    display: flex;
+    gap: 8px;
+    color: var(--text-color);
+}
+.welcome-bold{
+    font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 40px;
+  font-variation-settings:
+    "wdth" 100;
+}
+.welcome-light{
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+      margin-top:5px;
+      font-size: 40px;
+      
+}
+.welcome-light span{
+    opacity: 0;
+    display: inline-block;
+    animation: fadeInLetter 0.5s forwards;
+}
+.welcome .wave{
+    height: 40px;
+    margin-top: 6px;
+    margin-left: 4px;
+}
+.welcome-bold span {
+    opacity: 0;
+    display: inline-block;
+    animation: fadeInLetter 0.5s forwards;
+  }
+  
+  @keyframes fadeInLetter {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+.wave {
+    position: relative;
+    animation: waveMove 2s infinite ease-in-out;
+  }
+  
+  .wave {
+    display: inline-block;
+    animation: wave 2.5s infinite ease-in-out;
+    transform-origin: center bottom; /* Ensures the rotation happens at the bottom of the image */
+  }
+  
+  /* Waving effect */
+  @keyframes wave {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-15deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    75% {
+      transform: rotate(-15deg);
+    }
+  }
+  
+  
+body.darkmode .welcome-bold,
+body.darkmode .welcome-light{
+    color: var(--)var(--widget-text);
+}
+.main .message{
+    margin-left:140px;
+    margin-top: 10px;
+}
+.motivation{
+    font-size: 15px;
+    font-family: "Poppins", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    color: #908E8D;
+    margin-bottom: 20px;
+}
+.daily{
+    border-radius: 10px;
+    background-color: #eee1d1;
+    padding: 10px;
+}
+.header-boxes{
+    
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    gap: 15px;
+    justify-content: space-between; /* Spreads boxes evenly */
+    width:1650px;
+    margin-left: 140px;
+    margin-bottom: 30px;
+   
+}
+
+.daily{
+    flex: 1 1 calc(25% - 15px); /* 4 boxes in a row */
+    min-width: 150px; /* Prevents shrinking too much */
+    height: 150px;
+    background:var(--widget-color);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    border-radius: 24px; /* Smooth corners */
+    display: flex;
+}
+.pomo-img {
+    background: var(--body-color);
+    width: 130px;
+    height: 130px;
+    border-radius: 14px;
+    /* Removed position absolute since it's not needed for flex layout */
+    margin-right: 30px; /* Adds some spacing between the image and text */
+    margin-top: 0px;
+    margin-left: 0px;
+}
+.pomo-img1 {
+    background: var(--body-color);
+    width: 130px;
+    height: 130px;
+    border-radius: 14px;
+    /* Removed position absolute since it's not needed for flex layout */
+    margin-right: 30px; /* Adds some spacing between the image and text */
+    margin-top: 0px;
+    margin-left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@keyframes tick {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.stopwatch-hand {
+    position: absolute;
+    width: 3px; /* Thin hand */
+    height: 35px; /* Adjust length */
+    background-color: white;
+    top: 24px; /* Adjust according to your image */
+    margin-left: 63px;
+    margin-top:98px;
+    transform-origin: bottom;
+    animation: tick 15s linear infinite; /* Rotates smoothly every 15s */
+    
+}
+.pomo-img img{
+    height: 100%; /* Ensures the image height fills the circle */
+    width: 100%; /* Ensures the image width fills the circle */
+    object-fit: cover;
+}
+.pomo-img1 img{
+    height: 150px ; /* Ensures the image height fills the circle */
+    width:150px; /* Ensures the image width fills the circle */
+    
+}
+.info-pomo{
+    display: flex;
+    flex-direction: column;
+}
+.info-pomo .total-time{
+    font-size: 16px;
+    font-family: "Poppins", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    color: var(--text-color);
+    margin-top: 5px;
+}
+.info-pomo .daily-time{
+    font-size: 24px;
+    font-family: "Poppins", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    color: var(--text-color);
+    margin-top: 5px;
+    margin-left: -5px;
+}
+.info-pomo .great{
+    font-size: 13px;
+    font-family: "Poppins", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    color: #908E8D;
+    margin-top: 20px;
+}
+.percentage{
+    display: flex;
+}
+.percentage .bx.bx-up-arrow-alt{
+    color: green;
+    font-size: 16px;
+    margin-top: 22px;
+    margin-left: 5px;
+}
+.percentage .increase{
+    font-size: 15px;
+    color: green;
+    margin-top: 20px;
+    
+}
+.box1{
+    width: 1100px;
+    height: 530px;
+    background: var(--widget-color);
+    margin-left: 140px;
+    border-radius: 24px;
+    position: relative;
+    
+}
+.box1 h1{
+    position: absolute;
+    font-size: 23px;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-left: 50px;
+    color: var(--text-color);
+}
+.graphbox{
+    position: absolute;
+    height: 400px;
+    width: 1000px;
+    margin-top:80px;
+    margin-left: 50px;
+}
+.box2{
+    top:0;
+    right: 0;
+    width: 530px;
+    height: 530px;
+    background: var(--widget-color);
+    margin-left: 20px;
+    border-radius: 24px;
+    position: relative;
+    
+}
+.box2 h1{
+    position: absolute;
+    font-size: 23px;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-left: 50px;
+    color: var(--text-color);
+}
+.graphbox2{
+    position: absolute;
+    height: 400px;
+    width: 400px;
+    margin-top:80px;
+    margin-left: 50px;
+}
+.graphbox2 canvas {
+    width: 100% !important;
+    height: 400px !important; /* Adjust height as needed */
+}
+.mainbox{
+    display:flex;
+}
+.mainbox2{
+    width: 1650px;
+    display: flex;
+    gap:15px;
+    margin-left: 140px;
+    margin-top: 20px;
+}
+.box3{
+    flex: 1 1 calc(25% - 15px); /* 4 boxes in a row */
+
+    height: 300px;
+    background:var(--widget-color);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    border-radius: 24px; /* Smooth corners */
+}
+.box3 h1{
+    position: absolute;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-left: 40px;
+    color: var(--text-color);
+}
+.graphbox3{
+    position: absolute;
+    height: 200px;
+    width: 460px;
+    margin-top:80px;
+    margin-left: 40px;
+}
+.mainbox3{
+    margin-left: 140px;
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+.box4{
+    width: 550px;
+    height: 550px;
+    background: var(--widget-color);
+    border-radius: 24px;
+    position: relative;
+}
+.box4 h1{
+    position: absolute;
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-left: 40px;
+    color: var(--text-color);
+}
+.graphbox4{
+    position: absolute;
+    width: 430px;
+    height: 430px;
+    margin-top: 80px;
+    margin-left: 60px;
+}
+.box5{
+    width:1080px;
+    height: 550px;
+    background: var(--widget-color);
+    border-radius: 24px;
+    position: relative;
+}
+.box5 h1{
+    position: absolute;
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-left: 40px;
+    color: var(--text-color);
+}
+.graphbox5{
+    position: absolute;
+    width: 1000px;
+    height: 450px;
+    margin-top: 80px;
+    margin-left: 40px;
+}
+@media (max-width: 1740px) {
+    .header-boxes{
+        width: 1520px;
+        margin-left: 130px;
+    }
+    
+    .info-pomo .total-time{
+        font-size: 14px;
+    }
+    .info-pomo .daily-time{
+        font-size:21px;
+        margin-top: 15px;
+    }
+    .percentage .bx.bx-up-arrow-alt{
+        font-size: 14px;
+        margin-top: 25px;
+    }
+    .percentage .increase{
+        font-size: 13px;
+        margin-top: 25px;
+    }
+  }

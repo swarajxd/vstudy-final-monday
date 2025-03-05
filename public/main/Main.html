@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Dashboard - Udemy Style</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Facundo:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+ 
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <i class='bx bxl-react logo' ></i>
+                </span>
+                <div class="text header-text">
+                    <span class="name">vstudy</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bxs-dashboard icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="./course.html">
+                            <i class='bx bxs-book-open icon'></i>
+                            <span class="text nav-text">Courses</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="./pomo.html">
+                            <i class='bx bxs-time-five icon' ></i>
+                            <span class="text nav-text">Pomodaro</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="./task.html">
+                            <i class='bx bx-notepad icon'></i>
+                            <span class="text nav-text">ToDoList</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="./analysis.html">
+                            <i class='bx bx-bar-chart-square icon'></i>
+                            <span class="text nav-text">Analytics</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+                <li class="mode">
+                    <div class="moon-sun">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark Mode</span>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                <li class="profile">
+                    <a href="./profile.html">
+                        <div class="circle-profile">
+                        <img src="./profilepic.jpeg">
+                        </div>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
+    <main class="main">
+        <div class="1stlayer">
+            <div class="hello">
+                <div class="welcome">
+                  <h1 class="welcome-bold"id="text"><strong  >Hello</strong>,</h1>
+                  <h1 class="welcome-light" id="username">User</h1>
+
+                  <img class="wave " src="./wave.png" alt="Wave Image">
+                </div>
+                <div class="message">
+                <p class="motivation">Nice to have you back, what an exciting day!</br>Get ready and continue your lesson today</p>
+                </div>
+            </div>
+            <div class="Takequiz">
+              <div class="quiz-img">
+                  <img src="./quizachievement.png">
+              </div>
+              <div class="info-quiz">
+                <h2 class="quiz-time">Find your best study time</h2>
+                <div class="quiztext">
+                  <h1 class="daily-quiz">Attempt Quizzz</h1>
+                </div>
+                <button class="button2" onclick="window.location.href='../login/quizz/quiz.html'">Enter now</button>
+
+              </div>
+          </div>
+          <div class="pomodaro">
+            <div class="pomo-img">
+                <img src="./15timer.png">
+                <div class="stopwatch-hand"></div>
+            </div>
+            <div class="info-pomo">
+                <h2 class="total-time">Daily Study Time</h2>
+                <div class="percentage">
+                  <h1 id="studyTime" class="daily-time">Loading...</h1>                  
+                </div>
+                <h3 id="motivationMessage" class="great">Keep Going!</h3>
+            </div>
+        </div>                
+        </div>
+        <div class="layer2">
+            <div class="graph">
+                <h2>Analytics</h2>
+                <div class="block">
+                    <canvas id="myChart"></canvas>
+                </div>
+            
+            </div>
+        </div>
+        <div class="wrapper">
+            <header>
+              <p class="current-date"></p>
+              <div class="icons">
+                <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                <span id="next" class="material-symbols-rounded">chevron_right</span>
+              </div>
+            </header>
+            <div class="calendar">
+              <ul class="weeks">
+                <li>Sun</li>
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+              </ul>
+              <ul class="days"></ul>
+            </div>
+          </div>
+          <div class="schedule1">
+            <div class="header">
+                <span>Upcoming Tasks</span>
+                <p>See all</p>
+            </div>
+            <div id="tasks-container">
+                <!-- Tasks will be loaded here dynamically -->
+            </div>
+        </div>
+        
+          <div class="course">
+            <div class="Maths">
+              <div class="maincontainer">
+                <div class="topcontainer">
+                  <img src="./maths.jfif" alt="Mathematics Image"/>
+                </div>
+                <div class="lowcontainer">
+                  <h1 class="heading">Mathematics</h1>
+                  <p class="info-subject">Study mathematics for 2 hours daily to strengthen problem-solving skills.</p>
+                  <div class="smallbox">
+                    <i class='bx bx-book-alt'></i>
+                    <h2 class="score">Recent quiz score </h2>
+                    <h3 class="marks">05/15</h3>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="Physics">
+              <div class="maincontainer">
+                <div class="topcontainer">
+                  <img src="./4b230de4-1213-4a40-b5bf-349cf6ecafce.jfif" alt="Physics Image"/>
+                </div>
+                <div class="lowcontainer">
+                  <h1 class="heading">Physics</h1>
+                  <p class="info-subject">Study physics for 1.2 hours daily to build a strong conceptual foundation.</p>
+                  <div class="smallbox">
+                    <i class='bx bx-book-alt'></i>
+                    <h2 class="score">Recent quiz score </h2>
+                    <h3 class="marks">10/15</h3>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="Chemistry">
+              <div class="maincontainer">
+                <div class="topcontainer">
+                  <img src="./chem.jfif" alt="Chemistry Image"/>
+                </div>
+                <div class="lowcontainer">
+                  <h1 class="heading">Chemistry</h1>
+                  <p class="info-subject">Studying chemistry for 0.8 hours daily enhances your understanding of reactions.</p>
+                  <div class="smallbox">
+                    <i class='bx bx-book-alt'></i>
+                    <h2 class="score">Recent quiz score </h2>
+                    <h3 class="marks">13/15</h3>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="leaderboard-box">
+            <div class="leaderboard">
+              <h1 class="title">Study Leaderboard</h1>
+              <div class="subtitle">Top performers this week</div>
+              <ul class="student-list" id="studentList">
+                <!-- Student items will be dynamically added here -->
+              </ul>
+            </div>
+            <div class="modal-overlay" id="modalOverlay">
+              <div class="modal">
+                <button class="close-button" id="closeModal">&times;</button>
+                <div id="modalContent"></div>
+              </div>
+            </div>
+          </div>
+          <h2 class="textachiev">Achievements Unlocked</h2>
+          <p class="subtextachiev">Great job! Here are the badges you've earned this month</p>
+          <div class="achievement">
+            <div class="achievement-box">
+              <div class="achievement-content">
+                <h3 class="achievement-title">Streak Master</h3>
+                <p class="achievement-desc">Maintained a 30-day study streak.</br> Keep up the dedication!</p>
+              </div>
+              <img src="./streak.png" alt="Achievement Badge" class="badge-icon">
+            </div>
+            </div>
+          <div class="achievement">
+            <div class="achievement-box1">
+              <div class="achievement-content">
+                <h3 class="achievement-title">Study Marathoner</h3>
+                <p class="achievement-desc">Logged 100 hours of focused study time.</br>Your dedication is unstoppable!</p>
+              </div>
+              <img src="./trophy.png" alt="Achievement Badge" class="badge-icon2">
+            </div>
+            </div>
+         <div class="achievement">
+          <div class="achievement-box2">
+            <div class="achievement-content">
+                <h3 class="achievement-title">Flawless Genius</h3>
+                <p class="achievement-desc">Achieved a perfect score on 5 quizzes. Excellence is your standard!</p>
+            </div>
+            <img src="./genius.png" alt="Achievement Badge" class="badge-icon3">
+         </div>
+         </div>
+         <div class="achievement">
+          <div class="achievement-box3">
+            <div class="achievement-content">
+                <h3 class="achievement-title">Subject Prodigy</h3>
+                <p class="achievement-desc">Consistently excelled in a subject, proving your mastery and dedication!</p>
+            </div>
+            <img src="./streak.png" alt="Achievement Badge" class="badge-icon">
+         </div>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h2>vstudy</h2>
+                <p>Your personalized study companion for productivity and efficiency.</p>
+            </div>
+    
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">To-Do List</a></li>
+                    <li><a href="#">Pomodoro Timer</a></li>
+                    <li><a href="#">Study Analytics</a></li>
+                    <li><a href="#">Profile</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p>Email: support@vstudy.com</p>
+                <p>Phone: 7970334125</p>
+            </div>
+    
+            <div class="footer-section social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    
+        <div class="footer-bottom">
+            <p>&copy; 2025 VStudy | All Rights Reserved</p>
+        </div>
+    </footer>
+
+   
+
+  
+    <script src="main.js"></script>
+    
+    
+</body>
+</html>
